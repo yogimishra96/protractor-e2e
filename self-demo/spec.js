@@ -40,39 +40,51 @@
 // })
 
 describe('Protractor Demo App', function() {
-    it('Open login page', function() {
+    it('Open login tab', function() {
         browser.get('http://beta.siquo.com/');  
         element(by.css('.sign-in')).click();
     });
 
-    it('insert values in fields', function(){
+    it('Insert values and submit form', function(){
+        browser.sleep(5000);          
         element(by.name('email')).sendKeys('dannyywhite@gmail.com'); 
+        browser.sleep(5000);          
         element(by.name('password')).sendKeys('87654321');           
         element(by.css('.mat-checkbox-inner-container')).click();
         element(by.css('.mat-checkbox-inner-container')).click();
         element(by.css('.mat-checkbox-inner-container')).click();       
         element(by.css('.mat-checkbox-inner-container')).click();
         element(by.css('.mat-checkbox-inner-container')).click();
-        element(by.css('.simple-button.mat-button')).click();
+        element(by.css('.simple-button.mat-button')).click().then(function(){  
+            browser.sleep(5000);
+             expect(browser.driver.getCurrentUrl()).toMatch('http://beta.siquo.com/admin/settings/profile');          
+            element(by.css('.change-btn.mat-button')).click();
+        });
+
+
         // .
         // then(function(){
         //     // submit-listing mat-button
         //     // browser.driver.sleep(5000);
                 
         // });
-                   browser.waitForAngular();  
-                   element(by.css('.change-btn.mat-button')).click();
+                //    browser.waitForAngular();  
+                //    element(by.css('.change-btn.mat-button')).click();
         // .then(function() {
             // browser.waitForAngular();
         //     expect(browser.driver.getCurrentUrl()).toMatch('http://beta.siquo.com/admin/settings/profile');
-        //   });
-      
-        
-       
+        //   });           
        
         // element(by.linkText('Forgot Password')).click(function());
         
-    });      
+    });   
+
+    // it('after login', function(){
+    //     browser.waitForAngular();  
+    //     element(by.css('.change-btn.mat-button')).click();
+
+    // } ); 
+
        //    console.log(a);
     // });
 });
